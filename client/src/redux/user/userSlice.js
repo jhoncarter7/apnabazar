@@ -15,8 +15,8 @@ reducers: {
       state.loading = true
     },
     signinSuccess: (state, action)=>{
-     state.currentUser = action.payload;
-     state.payload = false;
+     state.currentUser = action.payload
+     state.loading = false;
      state.error = null;
     },
     signinFailure: (state, action)=>{

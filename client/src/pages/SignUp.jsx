@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function SignUp() {
  const [userData, setUserData] = useState(null)
-
+const [signupSuccess, setSignupSuccess] = useState(false)
  const changeHandler = (e) =>{
   setUserData((prev)=>({...prev, [e.target.id]:e.target.value}))
  }
@@ -22,9 +22,10 @@ export default function SignUp() {
          console.log(data.message)
          return;
       }
-      console.log(data)
+       setSignupSuccess(true)
     } catch (error) {
       console.log(error)
+      setSignupSuccess(false)
     }
   }
   return (
@@ -38,6 +39,7 @@ export default function SignUp() {
           <input type='password' id="password" className="border rounded-lg p-2 px-5 outline-none text-slate-700 w-full" placeholder="your password" onChange={changeHandler}/>
           <button className="border p-4 bg-green-700 w-full rounded-lg uppercase text-white hover:opacity-90">sign up</button>
         </form>
+        {signupSuccess && <p className='text-center text-green-800 font-semibold pb-2'>Successfully created</p>}
         <div className=" flex gap-3 w-full  px-5 sm:px-9">
         <p className='text-slate-700'>Already have an account!</p>
         <Link to={'/signin'} className='text-red-500 font-semibold'>
