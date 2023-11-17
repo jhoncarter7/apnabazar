@@ -2,8 +2,26 @@
 import { BsSearch} from 'react-icons/bs'
 import { PiShoppingCartBold} from 'react-icons/pi'
 import { Link } from 'react-router-dom'
+import {useSelector} from "react-redux"
+import {persistor} from "../redux/store.js"
 export default function Header() {
- 
+  const {currentUser} = useSelector((state)=> state.user)
+ const signOutHandler = async()=>{  
+     try {
+      const res = await fetch('api/auth/signout')
+      const data = await res.json()
+      console.log(data)
+      if(data.success === false){
+        return;
+      }
+      persistor.purge()
+      window.location.reload()
+     } catch (error) {
+      console.log(error)
+     }
+
+ }
+
   return (
     <div className="flex justify-between p-4 gap-4 md:gap-12 items-center md:px-7 shadow-md">
       <Link to={'/'}>
@@ -16,7 +34,8 @@ export default function Header() {
      </button>
       </form>
     <Link to={'/signin'}>
-      <button className="text-slate-700">Login</button>
+     {currentUser ? <button className="text-slate-700" onClick={signOutHandler}>Logout</button> :
+      <button className="text-slate-700">Login</button>}
     </Link>
     <div className=" items-center gap-2 bg-green-600 text-white font-bold p-1 rounded-lg sm:p-3 hidden sm:flex cursor-pointer">
       <PiShoppingCartBold className='text-lg md:text-2xl'/>
