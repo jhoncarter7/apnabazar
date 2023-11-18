@@ -3,7 +3,10 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import AuthRouter from './routes/auth.routes.js'
 import cookieParser from 'cookie-parser'
+import productRoute from './routes/product.routes.js'
 dotenv.config()
+
+
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log('connected to database');
 }).catch((err)=>{
@@ -18,6 +21,7 @@ app.listen(3000, ()=>{
     console.log('server is running om port 3000')
 })
 app.use('/api/auth/', AuthRouter)
+app.use('/api/', productRoute)
 
 app.use((err, req, res, next)=>{
     const statusCode = err.statusCode || 500;
