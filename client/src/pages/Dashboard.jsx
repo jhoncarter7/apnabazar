@@ -1,7 +1,14 @@
 import { useState } from "react";
-
+import { app } from "../firebase";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { useSelector } from "react-redux";
 export default function Dashboard() {
-  const [file, setFile] = useState([]);
+  const [files, setFile] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     categories: "",
@@ -10,27 +17,128 @@ export default function Dashboard() {
     newPrice: "",
     description: "",
     imageUrl: [],
+    userRef: "",
   });
+  const [imageUploadError, setImageUploadError] = useState(false);
+  const [imageUpload, setImageUpload] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(null)
   console.log(formData);
-  console.log(file);
+  const { currentUser } = useSelector((state) => state.user);
+  const imageSubmitHandler = () => {
+    setImageUpload(true);
+    setImageUploadError(false);
+    if (files.length > 0 && files.length + formData.imageUrl.length < 7) {
+      const promises = [];
+
+      for (let i = 0; i < files.length; i++) {
+        promises.push(storeImage(files[i]));
+      }
+      console.log(promises);
+      Promise.all(promises)
+        .then((urls) => {
+          setFormData({
+            ...formData,
+            imageUrl: formData.imageUrl.concat(urls),
+          });
+          setImageUpload(false);
+          setImageUploadError(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setImageUpload(false);
+          setImageUploadError("Image Upload Failed (2 mb max size per image)");
+        });
+    } else {
+      setImageUpload(false);
+      setImageUploadError("You can only upload 6 images per listing");
+    }
+  };
+
+  const storeImage = (file) => {
+    return new Promise((resolve, reject) => {
+      const storage = getStorage(app);
+      const fileName = new Date().getTime() + file.name;
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`uploaded ${progress}% done`);
+        },
+        (error) => {
+          reject(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+  const removeItem = (index) => {
+    setFormData({
+      ...formData,
+      imageUrl: formData.imageUrl.filter((_, i) => i !== index),
+    });
+  };
   const changehandler = (e) => {
-    if (e.target.type === "text" || e.target.type === "number" ||  e.target.type === "textarea" || e.target.type === "select-one") {
+    if (
+      e.target.type === "text" ||
+      e.target.type === "number" ||
+      e.target.type === "textarea" ||
+      e.target.type === "select-one"
+    ) {
       setFormData({ ...formData, [e.target.id]: e.target.value });
     }
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    console.log(file);
-    setFormData('')
+    try {
+      if(formData.imageUrl.length < 1){
+        return setError("You have to upload at least 1 image")
+      }
+      if(+formData.oldPrice < +formData.newPrice){
+        return setError("Discount price must be lower than regular price");
+      }
+      setLoading(true);
+      const res = await fetch(`/api/admin/${currentUser._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          userRef: currentUser._id,
+        }),
+      });
+      const data = await res.json();
+      if (data.message !== "success") {
+        setError(data.message);
+        setLoading(false)
+        return;
+      }
+      setSuccessMsg(data.message)
+      setLoading(false)
+      setError(null);
+    } catch (error) {
+      setError(error);
+      setLoading(false)
+    }
+
   };
+
   return (
     <div className="">
       <form
         onSubmit={submitHandler}
         className="w-[75%] shadow-md mx-auto mt-9 p-4 "
       >
-        <div className="flex flex-1 gap-4">
+        <div className="flex flex-col md:flex-row sm:flex-1 gap-4">
           <div className="flex flex-col gap-4">
             {/*  */}
             <div className="flex flex-col gap-1">
@@ -58,6 +166,7 @@ export default function Dashboard() {
                   className="text-gray-700  px-3 border-2 rounded-lg py-1 outline-none"
                 >
                   {/* <option selected >select one</option> */}
+                  <option defaultValue>choose any</option>
                   <option>vegetable</option>
                   <option>Groceries</option>
                 </select>
@@ -72,19 +181,21 @@ export default function Dashboard() {
                   value={formData.subCategories}
                   className="text-gray-700  px-3 border-2 rounded-lg py-1 outline-none"
                 >
+                  <option defaultValue>choose any</option>
                   <option>vegetable</option>
                   <option>Groceries</option>
                 </select>
               </div>
             </div>
             {/*  */}
-            <div className="flex  gap-2">
+            <div className="sm:flex  gap-2">
+          
               <div className="flex flex-col gap-1 flex-1">
                 <label className="text-lg font-semibold text-gray-500">
                   oldPrice
                 </label>
                 <input
-                  className="text-gray-700  px-3 border-2 rounded-lg py-1 outline-none"
+                  className="text-gray-700  sm:px-3 border-2 rounded-lg py-1 outline-none"
                   type="number"
                   id="oldPrice"
                   onChange={changehandler}
@@ -96,13 +207,14 @@ export default function Dashboard() {
                   newPrice
                 </label>
                 <input
-                  className="text-gray-700  px-3 border-2 rounded-lg py-1 outline-none"
+                  className="text-gray-700  sm:px-3 border-2 rounded-lg py-1 outline-none"
                   type="number"
                   id="newPrice"
                   onChange={changehandler}
                   value={formData.newPrice}
                 />
               </div>
+            
             </div>
             {/*  */}
             <label className="text-lg font-semibold text-gray-500">
@@ -157,16 +269,33 @@ export default function Dashboard() {
                 onChange={(e) => setFile(e.target.files)}
               />
             </label>
+            <div className="flex  gap-2 w-full p-4">
+              {formData.imageUrl.length > 0 &&
+                formData.imageUrl.map((url, index) => (
+                  <div className="flex flex-col" key={url}>
+                    <img src={url} alt="" className="w-14 h-14 rounded-lg" />
+                    <button onClick={() => removeItem(index)}>Delete</button>
+                  </div>
+                ))}
+            </div>
+
             <div className="w-full text-center pt-4">
-              <button className="  bg-[#21e065] text-white p-3 px-3 rounded-lg w-[12vw] font-medium text-xl hover:opacity-90 ">
-                Upload
+              <button
+                type="button"
+                onClick={imageSubmitHandler}
+                className="  bg-[#21e065] text-white p-3 px-3 rounded-lg md:w-[12vw] font-medium text-xl hover:opacity-90 "
+              >
+                {imageUpload ? "uploading..." : "Upload"}
               </button>
             </div>
+            <div className="">{imageUploadError && imageUploadError}</div>
           </div>
         </div>
         <div className="w-full text-center pt-4">
-          <button className="  bg-[#21e065] text-white p-3 px-3 rounded-lg w-[12vw] font-medium text-xl hover:opacity-90 ">
-            save
+          <p className="p-2 text-red-400 font-semibold">{error && error }</p>
+          <p className="p-2 text-green-400 font-semibold">{successMsg && successMsg }</p>
+          <button className="  bg-[#21e065] text-white p-2 px-3 rounded-lg md:w-[12vw] font-medium text-xl hover:opacity-90 ">
+          {loading ? "saving":"save"}
           </button>
         </div>
       </form>
