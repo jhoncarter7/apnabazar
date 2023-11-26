@@ -1,6 +1,7 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
+import AllCategories from "../components/AllCategories";
 
 
 
@@ -39,11 +40,15 @@ export default function Home() {
             </h3>
           </div>
         </aside>
-        <div className="h-[80vh] overflow-hidden w-[100%]">
-          <img className="max-h-fit " src='/public/image/banner.jpg' alt="fresh vegitable in your area" />
+        <div className="md:h-[50vh] lg:h-[80vh] overflow-hidden w-[100%]">
+          <img className="max-h-fit " src='/image/banner.jpg' alt="fresh vegitable in your area" />
           
           <button> </button>
         </div>
+      </section>
+      <section className="p-2  md:pt-8">
+        <h3 className="font-semibold text-xl">Shop by categories</h3>
+        <AllCategories/>
       </section>
     </main>
   );

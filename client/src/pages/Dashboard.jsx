@@ -182,8 +182,15 @@ export default function Dashboard() {
                   className="text-gray-700  px-3 border-2 rounded-lg py-1 outline-none"
                 >
                   <option defaultValue>choose any</option>
-                  <option>vegetable</option>
-                  <option>Groceries</option>
+                  <option>veg&fruit</option>
+                  <option>munchies</option>
+                  <option>coldDring&juices</option>
+                  <option>Instant&frozenfood</option>
+                  <option>tea&healthdrinks</option>
+                  <option>Bakery&Biscuits</option>
+                  <option>sweet Tooth</option>
+                  <option>Atta&Rice&Dal</option>
+                  <option>Dryfruits,masala&oil</option>
                 </select>
               </div>
             </div>
