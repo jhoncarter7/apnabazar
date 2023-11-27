@@ -1,9 +1,9 @@
 export default function ProductsCard() {
   return (
     <div className="w-[42vw] lg:w-[18vw] shadow-md p-[2vw] rounded-lg">
-      <img src="/image/fruits&veg.png" alt="" />
+      <img className="h-[26vh]" src="/image/fruits&veg.png" alt="" />
       <p className="text-xs text-gray-700">6 mins</p>
-      <h3>Desi Tomato - 500 g (Desi Tamatar) </h3>
+      <h3 className="text-sm">Desi Tomato - 500 g (Desi Tamatar) </h3>
       <p className="text-gray-600 font-light">500g</p>
       <div className="flex justify-between">
         <div>
