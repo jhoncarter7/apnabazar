@@ -10,3 +10,14 @@ export const addProduct = async (req, res, next)=>{
         next(error)
     }
 };
+
+export const getCategoriesProducts = async(req, res, next) => {
+const {subCategories} = req.params
+console.log(subCategories)
+try {
+    const subCategoriesList = await Productlist.find({subCategories})
+   res.status(200).json(subCategoriesList)
+} catch (error) {
+    next(error)
+}
+}
