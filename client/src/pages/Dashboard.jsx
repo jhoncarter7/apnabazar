@@ -184,13 +184,18 @@ export default function Dashboard() {
                   <option defaultValue>choose any</option>
                   <option>veg&fruit</option>
                   <option>munchies</option>
-                  <option>coldDring&juices</option>
-                  <option>Instant&frozenfood</option>
-                  <option>tea&healthdrinks</option>
-                  <option>Bakery&Biscuits</option>
-                  <option>sweet Tooth</option>
-                  <option>Atta&Rice&Dal</option>
-                  <option>Dryfruits,masala&oil</option>
+                  <option>DryFruits</option>
+                  <option>Sauces&Spreads</option>
+                  <option>Instant&Frozen</option>
+                  <option>tea&coffe</option>
+                  <option>DairyBreakfast</option>
+                  <option>PersonalCare</option>
+                  <option>sweetTooth</option>
+                  <option>coldDrink</option>
+                  <option>Cleaning</option>
+                  <option>Atta&Rice</option>
+                  <option>BabyCare</option>
+                  <option>Bakery</option>
                 </select>
               </div>
             </div>
