@@ -7,7 +7,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { useSelector } from "react-redux";
-export default function Dashboard() {
+export default function AddProduct() {
   const [files, setFile] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
@@ -133,10 +133,10 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="">
+    <div className="w-5/6">
       <form
         onSubmit={submitHandler}
-        className="w-[75%] shadow-md mx-auto mt-9 p-4 "
+        className="w-[100%] md:w-[85%] shadow-md mx-auto mt-9 p-4 "
       >
         <div className="flex flex-col md:flex-row sm:flex-1 gap-4">
           <div className="flex flex-col gap-4">
@@ -200,7 +200,7 @@ export default function Dashboard() {
               </div>
             </div>
             {/*  */}
-            <div className="sm:flex  gap-2">
+            <div className="md:flex  gap-2">
           
               <div className="flex flex-col gap-1 flex-1">
                 <label className="text-lg font-semibold text-gray-500">

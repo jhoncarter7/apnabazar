@@ -6,7 +6,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import About from './pages/About'
 import PrivateRoute from "./components/PrivateRoute";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/admin/Dashboard";
 import AttaRice from "./pages/categories/AttaRice";
 import BabyCare from "./pages/categories/BabyCare";
 import Bakery from "./pages/categories/Bakery";
@@ -21,6 +21,8 @@ import SaucesSpreads from "./pages/categories/SaucesSpreads";
 import SweetTooth from "./pages/categories/SweetTooth";
 import TeaCoffe from "./pages/categories/teaCoffe";
 import VegetableFruits from "./pages/categories/vegetableFruits";
+import ProductDetails from "./pages/ProductDetails";
+import ProductList from "./pages/admin/ProductList";
 
 
 
@@ -34,7 +36,8 @@ export default function App() {
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/about" element={<About/>}/>
     <Route element={<PrivateRoute/>}>
-      <Route path="/admin/:userid" element={<Dashboard/>}/>
+      <Route path="/admin/dashboard/:userid" element={<Dashboard/>}/>
+      <Route path="/admin/productlist/:userid" element={<ProductList/>}/>
     </Route>
     <Route path="/atta-Rice" element={<AttaRice/>}/>
     <Route path="/baby-Care" element={<BabyCare/>}/>
@@ -50,6 +53,7 @@ export default function App() {
     <Route path="/sweet-tooth" element={<SweetTooth/>}/>
     <Route path="/tea-coffe" element={<TeaCoffe/>}/>
     <Route path="/vegetable-fruits" element={<VegetableFruits/>}/>
+    <Route path="/:categories/:productName/:productId" element={<ProductDetails/>}/>
    </Routes>
    
    </BrowserRouter>
