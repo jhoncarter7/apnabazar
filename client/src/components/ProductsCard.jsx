@@ -2,7 +2,7 @@
 export default function ProductsCard({title, oldPrice, newPrice, imageUrl}) {
   
   return (
-    <div className="w-[42vw] lg:w-[18vw] shadow-md p-[2vw] rounded-lg">
+    <div className="w-[65vw]  md:w-[42vw] lg:w-[18vw] shadow-md p-[2vw] rounded-lg">
       <img className="h-[26vh]" src={imageUrl[0]} alt="" />
       <p className="text-xs text-gray-700">6 mins</p>
       <h3 className="text-sm">{title} </h3>

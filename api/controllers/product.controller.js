@@ -20,3 +20,14 @@ try {
     next(error)
 }
 }
+
+export const getSellerProducts = async(req, res, next)=>{
+    const userRef = req.params.userId
+try {
+    // find must be an object
+    const sellerProduct = await Productlist.find({userRef})
+    res.status(200).json(sellerProduct)
+} catch (error) {
+    next(error)
+}
+}
