@@ -23,6 +23,7 @@ import VegetableFruits from "./pages/categories/vegetableFruits";
 import ProductDetails from "./pages/ProductDetails";
 import ProductList from "./pages/admin/ProductList";
 import AddProduct from "./pages/admin/AddProduct";
+import EditProduct from "./pages/admin/EditProduct";
 
 
 
@@ -38,6 +39,7 @@ export default function App() {
     <Route element={<PrivateRoute/>}>
       <Route path="/admin/addProduct/:userid" element={<AddProduct/>}/>
       <Route path="/admin/productlist/:userid" element={<ProductList/>}/>
+      <Route path="/admin/editProduct/:userid" element={<EditProduct/>}/>
     </Route>
     <Route path="/atta-Rice" element={<AttaRice/>}/>
     <Route path="/baby-Care" element={<BabyCare/>}/>

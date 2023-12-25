@@ -37,7 +37,7 @@ export default function Header() {
      {currentUser ? <button className="text-slate-700" onClick={signOutHandler}>Logout</button> :
       <button className="text-slate-700">Login</button>}
     </Link>
-    <Link to={`/admin/addProduct/${currentUser._id}`}>
+    <Link to={`/admin/addProduct/${currentUser?._id}`}>
     <button className='min-w-[7rem] hidden md:flex'>Become a seller</button>
     </Link>
     <div className=" items-center gap-2 bg-green-600 text-white font-bold p-1 rounded-lg sm:p-3 hidden sm:flex cursor-pointer">

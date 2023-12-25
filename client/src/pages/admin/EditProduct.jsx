@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { app } from "../../firebase";
 import {
   getDownloadURL,
@@ -8,6 +8,7 @@ import {
 } from "firebase/storage";
 import { useSelector } from "react-redux";
 import Dashboard from "../../components/Dashboard";
+import { useParams } from "react-router-dom";
 
 
 export default function EditProduct() {
@@ -28,6 +29,25 @@ export default function EditProduct() {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
+  let {userid} = useParams()
+ 
+useEffect(()=>{
+  const singleProduct = async ()=>{
+try {
+  const res = await fetch(`/api/getSingleProduct/${userid}`)
+  if(!res.ok){
+    throw new Error(res.status)
+  }
+  const data = await res.json()
+  setFormData(data)
+
+} catch (error) {
+  console.log(error)
+}
+  }
+  singleProduct()
+},[userid])
+
   const imageSubmitHandler = () => {
     setImageUpload(true);
     setImageUploadError(false);
@@ -108,7 +128,7 @@ export default function EditProduct() {
         return setError("Discount price must be lower than regular price");
       }
       setLoading(true);
-      const res = await fetch(`/api/admin/${currentUser._id}`, {
+      const res = await fetch(`/api/updateSellerProduct/${userid}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,6 +155,8 @@ export default function EditProduct() {
 
 
   return (
+    <>
+    <h2 className="text-center pt-4">Edit Product</h2> 
     <div className=" w-full flex flex-col sm:flex-row   gap-5 shadow-lg md:ml-10 mt-10  pt-4">
         <div className='self-center sm:self-start'>
         <Dashboard />
@@ -329,6 +351,6 @@ export default function EditProduct() {
         </div>
       </div>
  
-  );
+ </> );
 }
 
