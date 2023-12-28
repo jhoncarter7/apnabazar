@@ -24,6 +24,7 @@ import ProductDetails from "./pages/ProductDetails";
 import ProductList from "./pages/admin/ProductList";
 import AddProduct from "./pages/admin/AddProduct";
 import EditProduct from "./pages/admin/EditProduct";
+import Cart from "./pages/admin/Cart";
 
 
 
@@ -40,6 +41,8 @@ export default function App() {
       <Route path="/admin/addProduct/:userid" element={<AddProduct/>}/>
       <Route path="/admin/productlist/:userid" element={<ProductList/>}/>
       <Route path="/admin/editProduct/:userid" element={<EditProduct/>}/>
+      <Route path="/admin/editProduct/:userid" element={<EditProduct/>}/>
+      <Route path="/admin/viewcart" element={<Cart/>}/>
     </Route>
     <Route path="/atta-Rice" element={<AttaRice/>}/>
     <Route path="/baby-Care" element={<BabyCare/>}/>

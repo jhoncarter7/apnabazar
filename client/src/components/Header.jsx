@@ -40,10 +40,12 @@ export default function Header() {
     <Link to={`/admin/addProduct/${currentUser?._id}`}>
     <button className='min-w-[7rem] hidden md:flex'>Become a seller</button>
     </Link>
+    <Link to={'/admin/viewcart'}> 
     <div className=" items-center gap-2 bg-green-600 text-white font-bold p-1 rounded-lg sm:p-3 hidden sm:flex cursor-pointer">
       <PiShoppingCartBold className='text-lg md:text-2xl'/>
       <p className='text-sm md:text-lg hidden md:flex'>Cartitem</p>
     </div>
+    </Link>
   </div>
   )
 }
