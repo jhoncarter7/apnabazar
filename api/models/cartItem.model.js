@@ -11,7 +11,7 @@ const cartItemSchema = new mongoose.Schema({
     default: 1,
   },
   newPrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   oldPrice: {
