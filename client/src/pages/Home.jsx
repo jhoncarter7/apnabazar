@@ -42,8 +42,6 @@ export default function Home() {
         </aside>
         <div className="md:h-[50vh] lg:h-[80vh] overflow-hidden w-[100%]">
           <img className="max-h-fit " src='/image/banner.jpg' alt="fresh vegitable in your area" />
-          
-          <button> </button>
         </div>
       </section>
       <section className="p-2  md:pt-8">

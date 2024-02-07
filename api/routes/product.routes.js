@@ -11,5 +11,5 @@ route.post('/updateSellerProduct/:itemId', userVerify, updateSellerProduct)
 route.get('/getSingleProduct/:itemId',userVerify, getSingleProduct)
 route.get('/cart/getCartProduct/:userRef', userVerify, getCartProduct)
 route.post('/cart/addProductToCart', userVerify, addProductToCart)
-route.post('/cart/updateCart/:itemId', userVerify, updateCartItem)
+route.post('/cart/updateCart/:userId', userVerify, updateCartItem)
 export default route;

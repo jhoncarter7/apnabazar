@@ -1,14 +1,20 @@
 import mongoose from "mongoose";
 
 const cartItemSchema = new mongoose.Schema({
-  name: {
+  productId: {
+    type: String,
+    required: true
+  },
+  
+  title: {
     type: String,
     required: true,
   },
   quantity: {
     type: Number,
     required: true,
-    default: 1,
+    default: 1
+    
   },
   newPrice: {
     type: Number,
@@ -18,16 +24,20 @@ const cartItemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  imageUrl:{
+    type: String,
+    required: true,
+  }
 });
 
 const cartSchema = new mongoose.Schema({
-  CartItem: [cartItemSchema],
+  CartItems: [cartItemSchema],
   total: {
     type: Number,
     required: true,
     default: 0,
   },
-  userRef: {
+  userId: {
     type: String,
     required: true,
   },
