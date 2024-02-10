@@ -65,3 +65,21 @@ export const addAndUpdateProductToCart = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const removeCartProduct = async (req, res) => {
+  const { userId, productId } = req.params;
+  try {
+    const userCart = await Cart.updateOne(
+      { userId },
+      { $pull: { CartItems: { productId } } }
+    );
+    if (!userCart) {
+      return res.status(400).json({ error: "Product not found in the cart" });
+    }
+    res
+      .status(200)
+      .json({ message: "Item removed from the cart successfully" });
+  } catch (error) {
+    errorHandler(error.status, error.message);
+  }
+};

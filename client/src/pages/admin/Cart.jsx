@@ -6,29 +6,43 @@ export default function Cart() {
 const [cartProduct, setCartProduct] = useState()
 const {currentUser} = useSelector(state => state.user)
 
-useEffect(() => {
-  const getcartItems = async () => {
-    try {
-      const res = await fetch(`/api/cart/getCartProduct/${currentUser._id}`)
-      const data = await res.json()
-    
-      if(data.status === false){
-        console.log("coludn't get your cart item")
-        return
-      }
-   
-      setCartProduct(data.CartItems)
-    } catch (error) {
-      console.log(error)
+const getcartItems = async () => {
+  try {
+    const res = await fetch(`/api/cart/getCartProduct/${currentUser._id}`)
+    const data = await res.json()
+  
+    if(data.status === false){
+      console.log("coludn't get your cart item")
+      return
     }
+ 
+    setCartProduct(data.CartItems)
+  } catch (error) {
+    console.log(error)
   }
+}
+
+useEffect(() => {
   getcartItems()
-
-
 }, [setCartProduct, currentUser])
 
 
-
+const removeCartItem = async (productId) => {
+  try {
+  
+    const res = await fetch(`/api/cart/removeCartProduct/${currentUser._id}/${productId}`)
+    const data = await res.json()
+ 
+    if(data.status === false){
+      console.log("coludn't remove your cart item")
+      return
+    }
+    getcartItems()
+    console.log("successfully removed")
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
 // console.log(cartProduct)
@@ -72,7 +86,7 @@ useEffect(() => {
                   <option value="8">8</option>
                 </select>
                 
-                <button className="self-center ">delete</button>
+                <button className="self-center " onClick={()=> removeCartItem(product.productId)}>delete</button>
               </div>
               <hr />
             </div>

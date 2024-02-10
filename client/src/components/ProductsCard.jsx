@@ -6,43 +6,14 @@ export default function ProductsCard({prodId, title, oldPrice, newPrice, imageUr
   const {currentUser} = useSelector(state => state.user)
   // const [cartprod, setCartProd] = useState()
 
-  
-  // useEffect(() => {
 
-  //   // const getCartProd = async () => {
-  //   //   try {
-  //   //     const res = await fetch(`/api/cart/getCartProduct/${currentUser._id}`);
-  //   //     if (!res.ok) {
-  //   //       throw new Error(`HTTP error! status: ${res.status}`);
-  //   //     }
-  //   //     const data = await res.json();
-  //   //     if (data.status === false) {
-  //   //       console.log(data.message);
-  //   //       return;
-  //   //     }
-  //   //     setCartProd(data)
-  //   //   } catch (error) {
-  //   //     console.log(error);
-  //   //   }
-  //   // };
-
-  //   // getCartProd()
-    
-   
-    
- 
-  //   // if(cartprod?.length <= 0){
-  //   //   const debounce = (addcartProd(), delay) => {}
-      
-  //   //  }
-  // }, [currentUser, cartprod?.length]);
 
 
 
   
     const addcartProd = async (itemId) => {
       try {
-        const res = await fetch('/api/cart/addProductToCart', {
+        const res = await fetch('/api/cart/addAndUpdateProductToCart', {
           method: "POST",
           headers: {
             'content-type': 'application/json'
