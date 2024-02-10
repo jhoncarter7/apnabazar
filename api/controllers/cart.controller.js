@@ -57,7 +57,7 @@ export const addAndUpdateProductToCart = async (req, res) => {
     }
 
     // Save the cart to the database
-    await userCart.save();
+    await userCart.save({new: true});
 
     res.status(200).json({ message: "Item added to the cart successfully" });
   } catch (error) {
