@@ -26,6 +26,7 @@ export default function AddProduct() {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
+  console.log(successMsg)
   const imageSubmitHandler = () => {
     setImageUpload(true);
     setImageUploadError(false);
@@ -117,12 +118,15 @@ export default function AddProduct() {
         }),
       });
       const data = await res.json();
+      console.log("before", data);
+      console.log("before", data.message);
       if (data.message !== "success") {
         setError(data.message);
         setLoading(false);
         return;
       }
-      setSuccessMsg(data.message);
+      setSuccessMsg("Product added successfully");
+      console.log(data);
       setLoading(false);
       setError(null);
     } catch (error) {
