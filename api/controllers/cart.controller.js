@@ -59,12 +59,9 @@ export const addAndUpdateProductToCart = async (req, res) => {
     // Save the cart to the database
     await userCart.save({ new: true });
 
-    res
-      .status(200)
-      .json(userCart, { message: "Item added to the cart successfully" });
+    res.status(200).json({userCart, message: "Item added to the cart successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    errorHandler(error.status, error.message);
   }
 };
 
@@ -102,7 +99,7 @@ export const updateProductFromCart = async (req, res) => {
 
     if (existingItemIndex !== -1) {
       userCart.CartItems[existingItemIndex].quantity = quantity;
-    }else{
+    } else {
       return res.status(400).json({ error: "Item not found in the cart" });
     }
 
@@ -110,7 +107,7 @@ export const updateProductFromCart = async (req, res) => {
 
     return res
       .status(200)
-      .json({userCart}, { message: "Item updated successfully" });
+      .json({userCart, message: "Item updated successfully" });
   } catch (error) {
     errorHandler(error.status, error.message);
   }

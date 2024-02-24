@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CartTotal from "./CartTotal";
+import {ToastContainer,toast} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Cart() {
   const [cartProduct, setCartProduct] = useState();
@@ -18,6 +21,7 @@ export default function Cart() {
       }
 
       setCartProduct(data.CartItems);
+     
     } catch (error) {
       console.log(error);
     }
@@ -39,8 +43,9 @@ export default function Cart() {
         return;
       }
       getcartItems();
-      console.log("successfully removed");
+    toast.success("Item removed from Cart",  {icon: "👏"})
     } catch (error) {
+      toast.error("Item not removed from Cart",  {icon: ""})
       console.log(error);
     }
   };
@@ -67,9 +72,11 @@ export default function Cart() {
         return;
       }
      console.log("item updated successfully")
-    setCartProduct(data.CartItems)
+    toast.success("Item updated successfully",  {icon: "👏"})
+    getcartItems();
     } catch (error) {
       console.log(error);
+      toast.error("Item not updated",  {icon: "👏"})
     }
 
     // setProduct({...product, quantity: valueNu})
@@ -147,6 +154,7 @@ export default function Cart() {
       {/* right side */}
 
       <CartTotal cartProduct={cartProduct} />
+      <ToastContainer position="bottom-right" theme= "dark" hideProgressBar stacked />
     </div>
   );
 }

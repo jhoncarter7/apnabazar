@@ -53,7 +53,7 @@ export const updateSellerProduct = async(req, res, next)=>{
 }
 export const deleteSellerProduct = async(req, res, next)=>{
     const listing = await Productlist.findById(req.params.itemId);
-    console.log(listing)
+
     if (!listing) return next(errorHandler(404, "listing not found"));
     if (req.user.id !== listing.userRef)
       return next(errorHandler(401, "You can only delete your own listing"));

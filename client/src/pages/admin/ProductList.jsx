@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Dashboard from "../../components/Dashboard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
+
+
+
 export default function ProductList() {
   const { currentUser } = useSelector((state) => state.user);
   const [productLists, setproductLists] = useState();
   // const [deleteProductId, setDeleteProductId] = useState(null);
 
-  const listOfProduct = async () => {
+  const listOfProduct = useCallback(async () => {
     try {
       const res = await fetch(`/api/getSellerProduct/${currentUser._id}`);
       const data = await res.json();
@@ -20,10 +23,11 @@ export default function ProductList() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [currentUser._id]); // Add an empty array as the second argument to useCallback
+
   useEffect(() => {
     listOfProduct();
-  }, [currentUser._id]);
+  }, [currentUser._id, listOfProduct]);
 
   const deleteProductHandler = async (productId) => {
     try {
@@ -36,11 +40,15 @@ export default function ProductList() {
         console.log(data.message);
         return;
       }
-      listOfProduct;
       console.log("Product deleted successfully");
+      setproductLists(
+        productLists.filter((product) => product._id !== productId)
+      );
+     console.log( "productLists", productLists)
     } catch (error) {
       console.log(error);
     }
+    
   };
 
   return (
@@ -59,11 +67,12 @@ export default function ProductList() {
               <h3 className="text-sm h-6">
                 <TextTruncate
                   line={1}
-                  element="h3"
+                  element="div"
                   truncateText="…"
                   text={product.title}
                 />
               </h3>
+
               <p className="text-gray-600 font-light">500g</p>
               <div className="flex justify-between">
                 <div>
