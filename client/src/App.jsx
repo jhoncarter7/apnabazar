@@ -1,10 +1,9 @@
-
-import { BrowserRouter,  Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import About from './pages/About'
+import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import AttaRice from "./pages/categories/AttaRice";
 import BabyCare from "./pages/categories/BabyCare";
@@ -25,42 +24,60 @@ import ProductList from "./pages/admin/ProductList";
 import AddProduct from "./pages/admin/AddProduct";
 import EditProduct from "./pages/admin/EditProduct";
 import Cart from "./pages/admin/Cart";
-
-
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCanceled from "./pages/PaymentCanceled";
 
 export default function App() {
+ 
   return (
-   <BrowserRouter>
-   <Header/>
-   <Routes>
-    <Route path="/*" element={<Home/>}/>
-    <Route path="/signin" element={<SignIn/>}/>
-    <Route path="/signup" element={<SignUp/>}/>
-    <Route path="/about" element={<About/>}/>
-    <Route element={<PrivateRoute/>}>
-      <Route path="/admin/addProduct/:userid" element={<AddProduct/>}/>
-      <Route path="/admin/productlist/:userid" element={<ProductList/>}/>
-      <Route path="/admin/editProduct/:userid" element={<EditProduct/>}/>
-      <Route path="/admin/editProduct/:userid" element={<EditProduct/>}/>
-      <Route path="/admin/viewcart" element={<Cart/>}/>
-    </Route>
-    <Route path="/atta-Rice" element={<AttaRice/>}/>
-    <Route path="/baby-Care" element={<BabyCare/>}/>
-    <Route path="/bakery" element={<Bakery/>}/>
-    <Route path="/cleaning" element={<Cleaning/>}/>
-    <Route path="/cold-Drink" element={<ColdDrink/>}/>
-    <Route path="/dary-Breakfast" element={<DairyBreakfast/>}/>
-    <Route path="/dry-Fruits" element={<DryFruits/>}/>
-    <Route path="/instant-frozen" element={<InstantFrozen/>}/>
-    <Route path="/munchies" element={<Munchies/>}/>
-    <Route path="/personal-care" element={<PersonalCare/>}/>
-    <Route path="/sauces-spreads" element={<SaucesSpreads/>}/>
-    <Route path="/sweet-tooth" element={<SweetTooth/>}/>
-    <Route path="/tea-coffe" element={<TeaCoffe/>}/>
-    <Route path="/vegetable-fruits" element={<VegetableFruits/>}/>
-    <Route path="/:categories/:productName/:productId" element={<ProductDetails/>}/>
-   </Routes>
-   
-   </BrowserRouter>
-  )
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/*" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin/addProduct/:userid" element={<AddProduct />} />
+            <Route
+              path="/admin/productlist/:userid"
+              element={<ProductList />}
+            />
+            <Route
+              path="/admin/editProduct/:userid"
+              element={<EditProduct />}
+            />
+            <Route
+              path="/admin/editProduct/:userid"
+              element={<EditProduct />}
+            />
+            <Route path="/admin/viewcart" element={<Cart />} />
+          </Route>
+          <Route path="/atta-Rice" element={<AttaRice />} />
+          <Route path="/baby-Care" element={<BabyCare />} />
+          <Route path="/bakery" element={<Bakery />} />
+          <Route path="/cleaning" element={<Cleaning />} />
+          <Route path="/cold-Drink" element={<ColdDrink />} />
+          <Route path="/dary-Breakfast" element={<DairyBreakfast />} />
+          <Route path="/dry-Fruits" element={<DryFruits />} />
+          <Route path="/instant-frozen" element={<InstantFrozen />} />
+          <Route path="/munchies" element={<Munchies />} />
+          <Route path="/personal-care" element={<PersonalCare />} />
+          <Route path="/sauces-spreads" element={<SaucesSpreads />} />
+          <Route path="/sweet-tooth" element={<SweetTooth />} />
+          <Route path="/tea-coffe" element={<TeaCoffe />} />
+          <Route path="/vegetable-fruits" element={<VegetableFruits />} />
+          <Route
+            path="/:categories/:productName/:productId"
+            element={<ProductDetails />}
+          />
+          <Route path="/paymentsuccess" element={<PaymentSuccess/>}/>
+          <Route path="/paymentcanceled" element={<PaymentCanceled/>}/>
+        </Routes>
+
+      </BrowserRouter>
+
+    
+
+  );
 }

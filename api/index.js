@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import productRoute from './routes/product.routes.js'
 dotenv.config()
 
+import cors from 'cors'
 
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log('connected to database');
@@ -16,6 +17,10 @@ mongoose.connect(process.env.MONGODB_URL).then(()=>{
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+    origin: ['http://localhost:5173'],
+    credentials: true
+}))
 
 app.listen(3000, ()=>{
     console.log('server is running om port 3000')

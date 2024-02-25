@@ -153,7 +153,7 @@ export default function Cart() {
       </div>
       {/* right side */}
 
-      <CartTotal cartProduct={cartProduct} />
+      <CartTotal cartProduct={cartProduct? cartProduct : []} />
       <ToastContainer position="bottom-right" theme= "dark" hideProgressBar stacked />
     </div>
   );
