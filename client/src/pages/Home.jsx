@@ -18,7 +18,7 @@ export default function Home() {
               All departmant
             </h2>
             <IoIosArrowDown onClick={()=>setisVisible((prev) => !prev)} className="cursor-pointer"/>
-            <Link to={'/admin/viewcart'} className='text-lg md:text-2xl ml-auto'> 
+            <Link to={'/admin/viewcart'} className='text-lg md:text-2xl ml-auto sm:hidden'> 
             <PiShoppingCartBold />
             </Link>
           </div>
