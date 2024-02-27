@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URL).then(()=>{
 }).catch((err)=>{
     console.log(err)
 })
-
+const __dirname = path.resolve()
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
@@ -23,7 +23,7 @@ app.use(cors({
     credentials: true
 }))
 
-const __dirname = path.resolve()
+
 
 app.listen(3000, ()=>{
     console.log('server is running om port 3000')
