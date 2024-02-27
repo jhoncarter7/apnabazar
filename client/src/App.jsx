@@ -14,7 +14,7 @@ import Munchies from "./pages/categories/Munchies";
 import PersonalCare from "./pages/categories/PersonalCare";
 import Cleaning from "./pages/categories/Cleaning";
 import InstantFrozen from "./pages/categories/instantFrozen";
-import ColdDrink from "./pages/categories/coldDrink";
+import ColdDrink from "./pages/categories/ColdDrink";
 import SaucesSpreads from "./pages/categories/SaucesSpreads";
 import SweetTooth from "./pages/categories/SweetTooth";
 import TeaCoffe from "./pages/categories/teaCoffe";
