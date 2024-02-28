@@ -1,13 +1,8 @@
 # apnabazar
-
-Absolutely! Let's craft a compelling README for your "apnabazar" project, incorporating the information from your `package.json` files.
-
-**README.md**
-
-## Apnabazar
 ![home page](https://res.cloudinary.com/dpsi55s3c/image/upload/v1709093573/dslq0sb3gl0jxpxqjhbt.png)
 ![cart page](https://res.cloudinary.com/dpsi55s3c/image/upload/v1709093572/fvgsx6mdemgfd9ajpufv.png)
 
+## Apnabazar
 
 * **CRUD Operations:** Users can easily create, read, update, and delete product listings.
 * **Secure Authentication:** User registration and login protect user data.
