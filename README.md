@@ -5,8 +5,15 @@ Absolutely! Let's craft a compelling README for your "apnabazar" project, incorp
 **README.md**
 
 ## Apnabazar
+![home page](https://res.cloudinary.com/dpsi55s3c/image/upload/v1709093573/dslq0sb3gl0jxpxqjhbt.png)
+![cart page](https://res.cloudinary.com/dpsi55s3c/image/upload/v1709093572/fvgsx6mdemgfd9ajpufv.png)
 
-**[Insert a concise and compelling description of your e-commerce application here. What features does it have? What problem does it solve? What makes it unique?]**
+
+* **CRUD Operations:** Users can easily create, read, update, and delete product listings.
+* **Secure Authentication:** User registration and login protect user data.
+* **Payment Integration:** A payment gateway allows for secure transactions.
+* **Product Listing:** Users have the ability to showcase their products effectively."
+
 
 **Technologies**
 
@@ -70,18 +77,3 @@ Absolutely! Let's craft a compelling README for your "apnabazar" project, incorp
 * Follow instructions specific to your deployment platform (e.g., Render, Heroku, AWS, Netlify, or your own server).
 * Ensure environment variables are configured on the deployment platform.
 
-**License**
-
-This project is licensed under the ISC License - see the LICENSE.md: LICENSE.md file for details.
-
-**Contributing**
-
-We welcome contributions to Apnabazar! Please see our CONTRIBUTING.md: CONTRIBUTING.md for guidelines on how to get involved.
-
-**Additional Notes / To-Do (Optional)**
-
-* [ ] Add screenshots or a demo GIF.
-* [ ] Describe any planned features or roadmap.
-* [ ] List known issues or feature requests.
-
-**Let me know if you have any specific features you'd like me to highlight in the description. I'm happy to customize this further!** 
