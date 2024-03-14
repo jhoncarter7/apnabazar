@@ -84,7 +84,7 @@ export default function Cart() {
 
 
   return (
-    <div className="flex md flex-col lg:flex-row p-4 pt-10 pl-2 md:px-20 gap-16">
+    <div className="flex md flex-col lg:flex-row p-4 pt-10 pl-2 md:px-20 gap-16 dark:text-white">
       {/* left side */}
       <div className="flex-1">
         <h3 className="font-semibold text-2xl pb-6">Your Cart</h3>
@@ -120,7 +120,7 @@ export default function Cart() {
                   <select
                     name="listofnum"
                     id="listofnum"
-                    className="self-center overflow-auto scroll-m-0 scroll-p-0 h-8 w-14 rounded-lg text-center bg-white border-2"
+                    className="self-center overflow-auto scroll-m-0 scroll-p-0 h-8 w-14 rounded-lg text-center bg-white text-black border-2"
                     size="1"
                     value={product.quantity}
                     onChange={handleSelectChange}

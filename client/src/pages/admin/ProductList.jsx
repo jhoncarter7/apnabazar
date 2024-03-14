@@ -54,14 +54,14 @@ export default function ProductList() {
   return (
     <main className="flex justify-between gap-3 md:gap-8">
       <Dashboard className="self-start" />
-      <div className="w-full grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 overflow-hidden gap-y-4">
+      <div className="flex flex-wrap gap-y-4 gap-x-5">
         {productLists ? (
           productLists?.map((product) => (
             <div
-              className="w-[65vw]  md:w-[42vw] lg:w-[18vw] shadow-md p-[1vw] rounded-md"
+              className="min-w-[11rem] w-[35vw]  md:w-[25vw] lg:w-[18vw] shadow-md p-[1vw] rounded-md  dark:bg-white "
               key={product._id}
             >
-              <img className="h-[26vh] mb-4" src={product.imageUrl[0]} alt="" />
+              <img className="h-[20vh] w-[35] lg:w-[18vw] md:h-[26vh] mb-4" src={product.imageUrl[0]} alt="" />
               <p className="text-xs text-gray-700">6 mins</p>
 
               <h3 className="text-sm h-6">

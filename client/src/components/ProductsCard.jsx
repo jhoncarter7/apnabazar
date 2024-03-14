@@ -53,8 +53,8 @@ const { currentUser } = useSelector((state) => state.user);
 
   // console.log(cartprod)
   return (
-    <div className="w-[65vw]  md:w-[42vw] lg:w-[18vw] shadow-md p-[2vw] rounded-lg">
-      <img className="h-[26vh]" src={imageUrl[0]} alt="image is here" />
+    <div className="min-w-[11rem] w-[35vw]  md:w-[25vw] lg:w-[18vw] shadow-md p-[2vw] rounded-lg bg-white">
+      <img className="h-[26vh] md:h-[26vh]" src={imageUrl[0]} alt="image is here" />
       <p className="text-xs text-gray-700">6 mins</p>
       <h3 className="text-sm">
         <TextTruncate lines={1} element="h3" truncateText="…" text={title} />

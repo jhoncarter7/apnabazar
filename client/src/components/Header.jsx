@@ -23,12 +23,12 @@ export default function Header() {
  }
 
   return (
-    <div className="flex justify-between p-4  gap-4 md:gap-12 items-center md:px-7 shadow-md">
+    <div className="flex justify-between p-4  gap-4 md:gap-12 items-center md:px-7 shadow-md dark:text-white">
       <Link to={'/'}>
     <h1 className="text-lg sm:text-2xl font-bold leading-none"><span className="text-orange-500">Apana</span><span className="text-green-500">BAZAAR</span></h1>
       </Link>
     <form className="flex  w-full justify-center border max-w-lg rounded-lg p-2 px-4">
-      <input type="text" placeholder="Search you Product.." className="  text-sm focus:outline-none text-slate-600  w-full max-w-lg"/>
+      <input type="text" placeholder="Search you Product.." className="  text-sm focus:outline-none text-slate-600 dark:bg-gray-900 dark:text-white w-full max-w-lg"/>
      <button className=''>
      <BsSearch className=''/>
      </button>

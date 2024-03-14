@@ -26,9 +26,12 @@ import EditProduct from "./pages/admin/EditProduct";
 import Cart from "./pages/admin/Cart";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCanceled from "./pages/PaymentCanceled";
+import { useEffect } from "react";
 
 export default function App() {
- 
+ useEffect(()=>{
+  document.querySelector('html').classList.add('dark')
+ })
   return (
       <BrowserRouter>
         <Header />

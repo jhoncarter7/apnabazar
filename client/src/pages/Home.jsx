@@ -9,7 +9,7 @@ import {Link} from "react-router-dom"
 export default function Home() {
   const [isvisible, setisVisible] = useState(true)
   return (
-    <main className="p-5">
+    <main className="p-5 dark:text-white">
       <section className="flex flex-col md:flex-row gap-4 ">
         <aside className=" min-w-fit">
           <div className="flex items-center gap-4  p-4 px-6 bg-lime-600 text-white font-semibold sm:text-lg">
