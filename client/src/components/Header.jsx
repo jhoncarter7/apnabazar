@@ -4,6 +4,7 @@ import { PiShoppingCartBold} from 'react-icons/pi'
 import { Link } from 'react-router-dom'
 import {useSelector} from "react-redux"
 import {persistor} from "../redux/store.js"
+import ThemeBtn from './ThemeBtn.jsx'
 export default function Header() {
   const {currentUser} = useSelector((state)=> state.user)
  const signOutHandler = async()=>{  
@@ -23,7 +24,7 @@ export default function Header() {
  }
 
   return (
-    <div className="flex justify-between p-4  gap-4 md:gap-12 items-center md:px-7 shadow-md dark:text-white">
+    <div className="flex justify-between py-4 md:p-4  gap-2 md:gap-12 items-center md:px-7 shadow-md dark:text-white">
       <Link to={'/'}>
     <h1 className="text-lg sm:text-2xl font-bold leading-none"><span className="text-orange-500">Apana</span><span className="text-green-500">BAZAAR</span></h1>
       </Link>
@@ -33,6 +34,7 @@ export default function Header() {
      <BsSearch className=''/>
      </button>
       </form>
+      <ThemeBtn/>
     <Link to={'/signin'}>
      {currentUser ? <button className="text-slate-700" onClick={signOutHandler}>Logout</button> :
       <button className="text-slate-700">Login</button>}

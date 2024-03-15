@@ -26,13 +26,24 @@ import EditProduct from "./pages/admin/EditProduct";
 import Cart from "./pages/admin/Cart";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentCanceled from "./pages/PaymentCanceled";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "./context/Theme";
 
 export default function App() {
+  const [themeMode, setThemeMode] = useState("light");
+
+  const darkMode = () => {
+    setThemeMode("dark");
+  }
+  const lightMode = () => {
+    setThemeMode("light");  
+  }
  useEffect(()=>{
-  document.querySelector('html').classList.add('dark')
+  document.querySelector('html').classList.remove('dark', 'light')
+  document.querySelector('html').classList.add(themeMode)
  })
   return (
+    <ThemeProvider value={{themeMode, darkMode, lightMode}}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -80,7 +91,7 @@ export default function App() {
 
       </BrowserRouter>
 
-    
+      </ThemeProvider>
 
   );
 }
